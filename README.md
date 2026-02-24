@@ -6,6 +6,8 @@ Select any region on screen and instantly send it to an OCR server.
 
 OcrBoard uses [macocr](https://github.com/riddleling/macocr) as the backend OCR server.
 
+![gif](output.gif)
+
 
 ## Features
 
