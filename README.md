@@ -4,7 +4,7 @@ A lightweight global hotkey OCR tool for Windows.
 
 Select any region on screen and instantly send it to an OCR server.
 
-OcrBoard uses [macocr](https://github.com/riddleling/macocr) as the backend OCR server.
+OcrBoard supports [macocr](https://github.com/riddleling/macocr) or [iOS-OCR-Server](https://github.com/riddleling/iOS-OCR-Server) as its backend OCR server.
 
 ![gif](output.gif)
 
@@ -29,8 +29,7 @@ OcrBoard uses [macocr](https://github.com/riddleling/macocr) as the backend OCR 
     - Copied to clipboard
     - Displayed in a popup
 
-Backend OCR is powered by:
-👉 [macocr](https://github.com/riddleling/macocr)
+Backend OCR is powered by [macocr](https://github.com/riddleling/macocr) or [iOS-OCR-Server](https://github.com/riddleling/iOS-OCR-Server).
 
 
 ## Requirements
