@@ -41,7 +41,7 @@ Backend OCR is powered by [macocr](https://github.com/riddleling/macocr) or [iOS
 
 ### Server
 
-You must run macocr as the OCR server.
+You must run `macocr` as the OCR server.
 
 macocr repository:
 ```
