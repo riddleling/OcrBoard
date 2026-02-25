@@ -53,10 +53,14 @@ Start macocr server (example):
 macocr -s -p 8000
 ```
 
+## How to get OcrBoard
+
+Download .exe from [GitHub Releases](https://github.com/riddleling/OcrBoard/releases).
+
 ## Running OcrBoard
 
 ```
-OcrBoard.exe -ip 10.0.1.13 -port 8000
+.\OcrBoard.exe -ip 10.0.1.13 -port 8000
 ```
 
 Or create a `.bat` file:
