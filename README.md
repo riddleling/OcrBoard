@@ -59,6 +59,8 @@ Download .exe from [GitHub Releases](https://github.com/riddleling/OcrBoard/rele
 
 ## Running OcrBoard
 
+An example of specifying the server IP and port:
+
 ```
 .\OcrBoard.exe -ip 10.0.1.13 -port 8000
 ```
