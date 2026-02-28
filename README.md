@@ -87,6 +87,7 @@ OcrBoard.exe -ip 10.0.1.13 -port 8000
 ```
 git clone https://github.com/riddleling/OcrBoard.git
 cd OcrBoard
+go mod tidy
 go build
 ```
 
