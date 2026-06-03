@@ -85,7 +85,7 @@ OcrBoard.exe -ip 10.0.1.13 -port 8000
 Example with a custom OCR result field:
 
 ```
-.\OcrBoard.exe -url http://10.0.1.13:8000/upload -result-field text
+.\OcrBoard.exe -url http://10.0.1.13:8000/docOCR -result-field ocr_text
 ```
 
 
