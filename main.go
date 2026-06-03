@@ -355,7 +355,7 @@ func setClipboardText(s string) error {
 // HTTP
 // =========================
 
-func postPNGAndGetOCR(url string, pngBytes []byte) (string, error) {
+func postPNGAndGetOCR(url string, pngBytes []byte, resultField string) (string, error) {
 	var body bytes.Buffer
 	w := multipart.NewWriter(&body)
 
@@ -398,12 +398,12 @@ func postPNGAndGetOCR(url string, pngBytes []byte) (string, error) {
 	if err := json.NewDecoder(resp.Body).Decode(&out); err != nil {
 		return "", err
 	}
-	if v, ok := out["ocr_result"]; ok {
+	if v, ok := out[resultField]; ok {
 		if s, ok := v.(string); ok {
 			return s, nil
 		}
 	}
-	return "", fmt.Errorf("no ocr_result in response")
+	return "", fmt.Errorf("no %s in response", resultField)
 }
 
 // =========================
@@ -978,6 +978,7 @@ func unregisterHotkey() {
 
 type uiRequest struct {
 	apiURL       string
+	resultField  string
 	mainThreadID uint32
 }
 
@@ -1018,7 +1019,7 @@ func uiThreadLoop(reqCh <-chan uiRequest) {
 				return
 			}
 
-			ocrText, err := postPNGAndGetOCR(req.apiURL, buf.Bytes())
+			ocrText, err := postPNGAndGetOCR(req.apiURL, buf.Bytes(), req.resultField)
 			if err != nil {
 				messageBoxTop("OCR Error", err.Error())
 				return
@@ -1054,6 +1055,7 @@ func main() {
 	port := flag.Int("port", 8000, "Server Port")
 	path := flag.String("path", "/upload", "API path")
 	url := flag.String("url", "", "Full API URL (overrides -ip/-port/-path)")
+	resultField := flag.String("result-field", "ocr_result", "JSON field name for OCR result text")
 	flag.Parse()
 
 	apiURL := *url
@@ -1063,6 +1065,7 @@ func main() {
 
 	fmt.Printf("[OCR] Hotkey ready: Win+Alt+Shift+T\n")
 	fmt.Printf("[OCR] API: %s\n", apiURL)
+	fmt.Printf("[OCR] Result field: %s\n", *resultField)
 	fmt.Printf("[OCR] ESC cancels selection (Win32).\n")
 
 	mainThreadID := getCurrentThreadId()
@@ -1097,7 +1100,7 @@ func main() {
 				unregisterHotkey()
 
 				// 2) selector 跑在 UI thread
-				reqCh <- uiRequest{apiURL: apiURL, mainThreadID: mainThreadID}
+				reqCh <- uiRequest{apiURL: apiURL, resultField: *resultField, mainThreadID: mainThreadID}
 			}
 
 		case WM_UI_DONE:
