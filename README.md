@@ -74,12 +74,19 @@ OcrBoard.exe -ip 10.0.1.13 -port 8000
 
 ## Command Line Options
 
-| Option  | Description                     | Default     |
-| ------- | ------------------------------- | ----------- |
-| `-ip`   | OCR server IP                   | `127.0.0.1` |
-| `-port` | OCR server port                 | `8000`      |
-| `-path` | API path                        | `/upload`   |
-| `-url`  | Full API URL (overrides others) | —           |
+| Option          | Description                         | Default      |
+| --------------- | ----------------------------------- | ------------ |
+| `-ip`           | OCR server IP                       | `127.0.0.1`  |
+| `-port`         | OCR server port                     | `8000`       |
+| `-path`         | API path                            | `/upload`    |
+| `-url`          | Full API URL (overrides others)     | empty string |
+| `-result-field` | JSON field name for OCR result text | `ocr_result` |
+
+Example with a custom OCR result field:
+
+```
+.\OcrBoard.exe -url http://10.0.1.13:8000/upload -result-field text
+```
 
 
 ## Build From Source
